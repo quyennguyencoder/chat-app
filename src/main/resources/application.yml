@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: CHAT-APPLICATION
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/chat_app
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        type:
+          json_format_mapper: com.nguyenquyen.chatapp.config.CustomHibernateJsonFormatter
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+jwt:
+  secret-key: yfH1x5azlrE4we6XsVsZq3rd/0pdv15bm966IauAclguJzbzMEOspCAyoxHoVzfiKgn9d8eol5Qwk45Nw0qlpyDoDKKGByc6+Cz0yFRb9O0=
