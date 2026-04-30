@@ -35,7 +35,7 @@ public class ChatMessageService {
     private final ChatMessageRepository chatMessageRepository;
     private final ConversationRepository conversationRepository;
     private final UserRepository userRepository;
-
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @Transactional(rollbackFor = Exception.class)
     public ChatMessageResponse sendChatMessage(String senderId, ChatMessageRequest request) {
@@ -93,6 +93,8 @@ public class ChatMessageService {
                                 .build())
                         .toList())
                 .build();
+
+        recipientIds.forEach(recipientId -> simpMessagingTemplate.convertAndSendToUser(recipientId, "/queue/messages", response));
 
         return response;
     }
